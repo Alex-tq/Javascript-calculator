@@ -30,11 +30,6 @@ class Calculator extends React.Component{
         { id: 'zero', value: '0'}   
       ]
     }
-    this.calculate = this.calculate.bind(this);
-    this.handleDecimal = this.handleDecimal.bind(this)
-    this.handleMinus = this.handleMinus.bind(this)
-    this.handleOperators = this.handleOperators.bind(this)
-    this.handleDefault = this.handleDefault.bind(this)
   }
   handleClick = (event) =>{
     const content = event.target.innerHTML;
@@ -62,7 +57,7 @@ class Calculator extends React.Component{
     } 
   }
   
-  handleDefault(nextInput, content){
+  handleDefault = (nextInput, content) =>{
     let valuesArray = nextInput.split(this.state.operatorsRegex)
     let lastValueLength = valuesArray[valuesArray.length-1].length
     if(this.state.input.length===1 && this.state.input==='0'){
@@ -80,7 +75,7 @@ class Calculator extends React.Component{
     }
   }
   
-  handleOperators(nextInput, content){
+  handleOperators = (nextInput, content) =>{
     
     if(this.state.operatorsRegex.test(nextInput.charAt(nextInput.length-2))){      
       if(this.state.operatorsRegex.test(nextInput.charAt(nextInput.length-3))){
@@ -108,7 +103,7 @@ class Calculator extends React.Component{
     }
   }
   
-  handleMinus(nextInput, content){ 
+  handleMinus = (nextInput, content) =>{ 
     if((this.state.input.length===1 && this.state.input==='0') || this.state.input.length === 0){
       this.setState(state =>{
         return ({input: content})
@@ -128,7 +123,7 @@ class Calculator extends React.Component{
     }
   }
   
-  handleDecimal(nextInput, content){
+  handleDecimal = (nextInput, content) =>{
     if(this.state.operatorsRegex.test(nextInput.charAt(nextInput.length-2)) && content==='.'){
       this.setState(state =>{
         return ({input: state.input+'0.'})
@@ -141,7 +136,7 @@ class Calculator extends React.Component{
     }
   }
   
-  calculate(expression){
+  calculate =(expression) =>{
     if(typeof expression === 'string' && (!this.state.operatorsRegex.test(expression.charAt(expression.length-1)))){
       
       const valuesRegex = /\d+\.?\d*/;     
@@ -196,10 +191,11 @@ class Calculator extends React.Component{
   }
   
   render(){
+    const {input, buttonsData} = this.state
     return(
       <div id="calculator">
-        <Display input={this.state.input}/>
-        <ButtonContainer buttonsData={this.state.buttonsData} handleClick={this.handleClick}/>
+        <Display input={input}/>
+        <ButtonContainer buttonsData={buttonsData} handleClick={this.handleClick}/>
       </div>
     )
   }
