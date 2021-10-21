@@ -1,4 +1,4 @@
-[See the project here](https://codepen.io/Alex_tq/full/MWYWzdm)
+[See the project here](https://alex-tq.github.io/javascript-calculator/)
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
